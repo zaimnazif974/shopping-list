@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from main.forms import ProductForm
 from django.urls import reverse
-from .models import Product
+from main.models import Product
 from django.http import HttpResponse
 from django.core import serializers
 from django.shortcuts import redirect
@@ -18,8 +18,8 @@ def show_main(request):
     products = Product.objects.filter(user=request.user)
 
     context = {
-        'name': 'Zaim Aydin Nazif', # Nama kamu
-        'class': 'PBP F', # Kelas PBP kamu
+        'name': request.user.username, 
+        'class': 'PBP F', 
         'products': products,
         'last_login': request.COOKIES['last_login'],
     }
