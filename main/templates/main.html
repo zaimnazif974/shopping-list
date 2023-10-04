@@ -23,42 +23,7 @@
     </div>
   </nav>
 
-<table class="table table-striped" id="product_table">
-    <thead>
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Price</th>
-            <th scope="col">Description</th>
-            <th scope="col">Date Added</th>
-            <th scope="col">Action</th>
-        </tr>
-    </thead>
-
-    <tbody class="table-group-divider">
-        {% for product in products %}
-        <tr>
-            <td>{{product.name}}</td>
-            <td>{{product.price}}</td>
-            <td>{{product.description}}</td>
-            <td>{{product.date_added}}</td>
-            <td>
-                <a href="{% url 'main:edit_product' product.pk %}">
-                    <button type="button" class="btn btn-warning">
-                        Edit
-                    </button>
-                </a>
-                <a href="{% url 'main:delete_product' product.pk %}">
-                    <button type="button" class="btn btn-danger">
-                        Delete
-                    </button>
-                </a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-
-    
-</table>
+  <table id="product_table"></table>
 
 <br />
 
@@ -120,12 +85,24 @@
             <th>Description</th>
             <th>Date Added</th>
         </tr>`
-        products.forEach((item) => {
+        products.forEach((product) => {
             htmlString += `\n<tr>
-            <td>${item.fields.name}</td>
-            <td>${item.fields.price}</td>
-            <td>${item.fields.description}</td>
-            <td>${item.fields.date_added}</td>
+            <td>${product.fields.name}</td>
+            <td>${product.fields.price}</td>
+            <td>${product.fields.description}</td>
+            <td>${product.fields.date_added}</td>
+            <td> 
+                <a href="edit-product/${product.pk}">
+                <button>
+                    Edit
+                </button>
+                </a>
+                <a href="delete/${product.pk}">
+                    <button >
+                        Delete
+                    </button>
+                </a>
+            </td>
         </tr>` 
         })
         
